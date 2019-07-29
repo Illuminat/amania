@@ -1,0 +1,57 @@
+.task {
+    padding: 20px 0;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.task > div{
+    display: inline-block;
+}
+
+.task_info{
+    width: 270px;
+    padding-right: 20px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.task_info > div{
+    display: inline-block;
+}
+
+.task .task_info .task_created{
+    width: 175px;
+    padding-left: 20px;
+}
+
+.task .task_info .task_created{
+    color: #95a5a6;
+    font-size: 12px;
+}
+.task .task_info .task_type{
+    float: right;
+    font-size: 12px;
+}
+
+.task .task_body{
+    width: 520px;
+    padding-right: 20px;
+    display: inline-block;
+}
+
+.task .task_body .text{
+    color: #95a5a6;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.task .actions{
+    float: right;
+    vertical-align: top;
+}
+
+.sortorder:after {
+    content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+}
+.sortorder.reverse:after {
+    content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
+}

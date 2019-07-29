@@ -1,0 +1,94 @@
+<section >
+    <script type="text/ng-template" id="modal">
+        <div class="modal-header">
+            <h3 class="modal-title">{{ls}}</h3>
+        </div>
+        <div class="modal-body" ng-form name="userForm">
+            <div class="row">
+                <label>Username</label>
+                <input type="text" name="userName" ng-model="username" placeholder="Robert" ng-maxlength="45" required>
+                <div ng-messages="userForm.userName.$error">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="maxlength">Username must not exceed 45 characters</div>
+                </div>
+            </div>
+            <div class="row">
+                <label>First Name:</label>
+                <input type="text" name="firstName" ng-model="first_name" ng-maxlength="45" required placeholder="Lara"/>
+                <div ng-messages="userForm.firstName.$error">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="maxlength">First name must not exceed 45 characters</div>
+                </div>
+            </div>
+            <div class="row">
+                <label>Last Name:</label>
+                <input type="text" name="lastName" ng-model="last_name" ng-maxlength="45" required placeholder="Croft"/>
+                <div ng-messages="userForm.lastName.$error">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="maxlength">Last name must not exceed 45 characters</div>
+                </div>
+            </div>
+            <div class="row">
+                <label>Email Address:</label>
+                <input type="email" name="email" ng-model="email" ng-maxlength="255" required placeholder="ng@gmail.com"/>
+                <div ng-messages="userForm.email.$error">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="email">Your email address is invalid</div>
+                    <div ng-message="maxlength">Email must not exceed 255 characters</div>
+                </div>
+            </div>
+            <div class="row">
+                <label>Password</label>
+                <input type="password" name="password" ng-model="password" ng-pattern="/^(?=.*[A-Z])(?=(?:.*\d){1,})(?=.*[!@$%^&*()_+=-]).{8,}$/" {{requiredPassword}}>
+                <div ng-messages="userForm.password.$error">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="pattern">Must be 1 uppercase, 1 digit, 1 special and more then 8</div>
+                </div>
+            </div>
+            <div class="row">
+                <label>Is Active</label>
+                <input class="input-xlarge" type="checkbox" ng-model="is_active" ng-true-value="1" ng-false-value="0">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-info" type="button" ng-click="save()">Save</button>
+            <button class="btn btn-danger" type="button" ng-click="delete()" ng-show="showDeleteButton">Delete</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    <div class="container" ><a ng-click="createUser()" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-plus"></i></a></div>
+    <br>
+    <div class="container" >
+        <div class="control-group">
+            <label class="control-label" for="search">Search</label>
+            <div class="controls">
+                <input type="input" ng-model="search" id="search" placeholder="Search">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container"  ng-init="getUsers()">
+        <div class="row">
+            <div class="table-responsive">
+                <table id="usersTable" class="table table-bordred table-striped">
+                    <thead>
+                    <th>UserName</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Active</th>
+                    <th>Updated</th>
+                    </thead>
+                    <tbody ng-repeat="item in data | filter: search">
+                    <tr id="{{item.id}}" ng-click="updateUser(item.id)">
+                        <td>{{item.username}}</td>
+                        <td>{{item.first_name}} {{item.last_name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.is_active}}</td>
+                        <td>{{item.last_update_time}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
